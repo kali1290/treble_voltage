@@ -1,0 +1,25 @@
+name: Build VoltageOS GSI
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
+
+      - name: Build GSI
+        run: |
+          # বিল্ড কমান্ড (এটি treble_voltage এর ডিফল্ট বিল্ড টার্গেট)
+          make full-build
